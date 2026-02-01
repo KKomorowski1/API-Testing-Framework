@@ -1,0 +1,18 @@
+[
+  {
+    "firstname": "Jim",
+    "lastname": "Beam",
+    "totalprice": 111,
+    "depositpaid": true,
+    "bookingdates": { "checkin": "{{today}}", "checkout": "{{next_week}}" },
+    "additionalneeds": "Breakfast"
+  },
+  {
+    "firstname": "Jack",
+    "lastname": "Daniels",
+    "totalprice": 222,
+    "depositpaid": false,
+    "bookingdates": { "checkin": "{{next_week}}", "checkout": "{{next_month}}" },
+    "additionalneeds": "Lunch"
+  }
+]

@@ -1,0 +1,11 @@
+[
+  {
+    "summary": "Missing Firstname",
+    "payload": {
+        "lastname": "Smith",
+        "totalprice": 100,
+        "depositpaid": true,
+        "bookingdates": {"checkin": "{{today}}", "checkout": "{{next_week}}"}
+    }
+  }
+]
