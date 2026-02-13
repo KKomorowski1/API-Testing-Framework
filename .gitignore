@@ -3,5 +3,7 @@ __pycache__/
 .pytest_cache/
 allure-results/
 allure-report/
-.env             # CRITICAL: Never commit this file
+.env
 .venv/
+locust.log
+report.html
