@@ -5,3 +5,5 @@ allure-results/
 allure-report/
 .env             # CRITICAL: Never commit this file
 .venv/
+locust.log
+report.html
