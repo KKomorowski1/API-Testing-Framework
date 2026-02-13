@@ -4,4 +4,3 @@ allure-pytest
 pydantic
 pytest-xdist
 python-dotenv
-locust
