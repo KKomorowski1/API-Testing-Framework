@@ -7,6 +7,8 @@ from services.booking_service import BookingService
 
 
 valid_bookings = DataProcessor.load_and_process_json("booking_valid.json")
+invalid_request_format_bookings = DataProcessor.load_and_process_json("booking_invalid.json")
+bad_request_bookings = DataProcessor.load_and_process_json("booking_bad_request.json")
 
 @pytest.fixture(scope="session")
 def auth_token():
@@ -38,3 +40,15 @@ def test_delete_booking_success(booking_service, booking_data):
     booking_id = validated_response.bookingid
     delete_response = booking_service.delete_booking(booking_id)
     assert delete_response.status_code == 200 or delete_response.status_code == 201
+
+
+@pytest.mark.parametrize("booking_data", invalid_request_format_bookings)
+def test_invalid_request_format_booking(booking_service, booking_data):
+    response = booking_service.create_booking(booking_data)
+    assert response.status_code == 500
+
+@pytest.mark.skip("logical error, api should return 400 but returns 200")
+@pytest.mark.parametrize("booking_data", bad_request_bookings)
+def test_invalid_logic_booking(booking_service, booking_data):
+    response = booking_service.create_booking(booking_data)
+    assert response.status_code == 400

@@ -1,0 +1,13 @@
+[
+    {
+        "firstname": "Jack",
+        "lastname": "Daniels",
+        "totalprice": 222,
+        "depositpaid": false,
+        "bookingdates": {
+            "checkin": "{{next_month}}",
+            "checkout": "{{next_week}}"
+        },
+        "additionalneeds": "Lunch"
+    }
+]
