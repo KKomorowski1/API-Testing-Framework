@@ -1,5 +1,6 @@
 # performance/locustfile.py
 from locust import HttpUser, task, between
+from services.auth_service import AuthService
 from services.booking_service import BookingService
 from config.config import config
 from utils.data_processor import DataProcessor
@@ -10,16 +11,24 @@ class BookingPerformanceUser(HttpUser):
 
     def on_start(self):
         """
-        Runs once per user. We can initialize our service here.
-        Note: Locust's HttpUser.client is compatible with requests.
+        Runs once per user. Authenticate here to get a token.
         """
-        # We wrap our existing service around the Locust client
+        # 1. Initialize services
+        self.auth_service = AuthService(self.host)
         self.booking_service = BookingService(self.host)
+        
+        # 2. Sync the Locust client session with our services
+        self.auth_service.session = self.client
         self.booking_service.session = self.client 
         
-        # Process test data using your existing DataProcessor
+        # 3. Generate token and set auth cookie
+        # Uses credentials from your .env file via config
+        token = self.auth_service.login(config.USERNAME, config.PASSWORD)
+        self.booking_service.set_auth_cookie(token)
+        
+        # 4. Process test data
         self.test_data = DataProcessor.load_and_process_json("booking_valid.json")[0]
-
+        
     @task(3)
     def view_bookings(self):
         # Using existing service methods
