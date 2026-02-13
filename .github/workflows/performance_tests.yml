@@ -1,0 +1,41 @@
+name: Performance Tests
+
+on:
+  workflow_dispatch: # Allows manual trigger from the Actions tab
+  schedule:
+    - cron: '0 0 * * 0' # Optional: Runs every Sunday at midnight
+
+jobs:
+  locust-load-test:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.10'
+
+    - name: Install dependencies
+      run: |
+        pip install -r requirements.txt
+        pip install locust
+
+    - name: Run Locust Load Test
+      env:
+        TEST_ENV: STAGING
+        STAGING_BASE_URL: ${{ secrets.STAGING_BASE_URL }}
+        COMMON_USERNAME: ${{ secrets.COMMON_USERNAME }}
+        COMMON_PASSWORD: ${{ secrets.COMMON_PASSWORD }}
+      run: |
+        # Runs locust in headless mode for 2 minutes with 10 users
+        locust -f performance/locustfile.py --headless -u 10 -r 2 --run-time 2m --html locust_report.html
+
+    - name: Upload Locust Report
+      if: always()
+      uses: actions/upload-artifact@v4
+      with:
+        name: locust-report
+        path: locust_report.html
