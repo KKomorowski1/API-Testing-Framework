@@ -2,6 +2,9 @@ from core.api_client import APIClient
 
 class BookingService(APIClient):
     ENDPOINT = "booking"
+    
+    def get_bookings(self):
+        return self.get(f"{self.ENDPOINT}")
 
     def create_booking(self, payload):
         return self.post(self.ENDPOINT, json=payload)
