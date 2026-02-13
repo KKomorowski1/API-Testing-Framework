@@ -3,28 +3,37 @@ Here is a comprehensive `README.md` file designed for your framework. It explain
 ```markdown
 # 🏨 Restful Booker API Test Framework
 
-A scalable, robust, and data-driven API testing framework built with **Python**, **Pytest**, and **Requests**.
+A scalable, robust, and data-driven API testing framework built with **Python**, **Pytest**, and **Requests**. This suite provides comprehensive coverage for the Restful Booker API, including automated functional tests, schema validation, and performance benchmarks.
 
-This framework is designed for high-scale applications, featuring a **Service Object Model** architecture, **Pydantic** for schema validation, and **Dynamic Data Injection** for maintenance-free test data management.
+---
+
+## 🛠️ Tech Stack & Tools
+
+* **Language:** Python 3.10+
+* **Test Runner:** [Pytest](https://pytest.org) for functional automation and DDT
+* **HTTP Client:** [Requests](https://requests.readthedocs.io) for core API interaction
+* **Performance:** [Locust](https://locust.io) for load and stress testing
+* **Reporting:** [Allure Report](https://qameta.io/allure-report/) for detailed visual analytics
+* **Validation:** [Pydantic](https://docs.pydantic.dev/) for strict response schema enforcement
+* **CI/CD:** Optimized for [Jenkins](https://www.jenkins.io/) integration and automated pipeline execution
+* **Environment:** [Python-dotenv](https://pypi.org/project/python-dotenv/) for managing secrets and environment variables
 
 ---
 
 ## 📂 Project Structure
 
-The project is organized to separate concerns, making it easy to scale:
-
 ```text
 restful_booker_tests/
-├── config/              # ⚙️ Configuration & Environment management
-├── core/                # 🧱 Base API Client (Logging, Request wrapping)
-├── data/                # 📄 JSON Test Data (Edit this to add tests!)
+├── config/              # ⚙️ Configuration & Environment management (config.py)
+├── core/                # 🧱 Base API Client (Requests wrapping & logging)
+├── data/                # 📄 JSON Test Data (Input for DDT)
+├── performance/         # 📈 Locust performance scripts (locustfile.py)
 ├── schemas/             # 🛡️ Pydantic Models (Response validation)
 ├── services/            # 🧠 Service Object Model (Business Logic)
-├── tests/               # 🧪 Test Scripts (Pytest)
-├── utils/               # 🔧 Helpers (Data Processor, File Readers)
+├── tests/               # 🧪 Test Scripts (Pytest functional tests)
+├── utils/               # 🔧 Helpers (Data processor & date generators)
 ├── .env.example         # 🔒 Template for environment secrets
-└── pytest.ini           # ⚡ Pytest configuration
-
+└── pytest.ini           # ⚡ Pytest and Allure configuration
 ```
 
 ---
@@ -116,6 +125,12 @@ TEST_ENV=PROD pytest
 
 ```
 
+### Performance Testing (Locust)
+Execute load tests to measure API performance.
+
+```Bash
+locust -f performance/locustfile.py
+```
 ### Generate Reporting
 
 Run tests and generate a visual Allure report.
