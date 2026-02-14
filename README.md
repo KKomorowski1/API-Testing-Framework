@@ -1,4 +1,3 @@
-Here is a comprehensive `README.md` file designed for your framework. It explains the technical architecture for developers and provides a simple guide for manual testers to add data.
 
 ```markdown
 # 🏨 Restful Booker API Test Framework
