@@ -1,0 +1,17 @@
+[
+  {
+    "firstname": "Updated",
+    "lastname": "User",
+    "totalprice": 300,
+    "depositpaid": true,
+    "bookingdates": { "checkin": "{{today}}", "checkout": "{{next_month}}" },
+    "additionalneeds": "Extra towels"
+  },
+  {
+    "firstname": "Another",
+    "lastname": "Guest",
+    "totalprice": 150,
+    "depositpaid": false,
+    "bookingdates": { "checkin": "{{next_week}}", "checkout": "{{next_month}}" }
+  }
+]

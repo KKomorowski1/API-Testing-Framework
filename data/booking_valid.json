@@ -14,5 +14,28 @@
     "depositpaid": false,
     "bookingdates": { "checkin": "{{next_week}}", "checkout": "{{next_month}}" },
     "additionalneeds": "Lunch"
+  },
+  {
+    "firstname": "Mary",
+    "lastname": "Watson",
+    "totalprice": 50,
+    "depositpaid": true,
+    "bookingdates": { "checkin": "{{today}}", "checkout": "{{next_month}}" },
+    "additionalneeds": "Late checkout"
+  },
+  {
+    "firstname": "Robert",
+    "lastname": "Brown",
+    "totalprice": 999,
+    "depositpaid": false,
+    "bookingdates": { "checkin": "{{next_week}}", "checkout": "{{next_month}}" }
+  },
+  {
+    "firstname": "Anna",
+    "lastname": "Lee",
+    "totalprice": 1,
+    "depositpaid": true,
+    "bookingdates": { "checkin": "{{today}}", "checkout": "{{next_week}}" },
+    "additionalneeds": "Dinner"
   }
 ]
