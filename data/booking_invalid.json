@@ -7,5 +7,41 @@
         "depositpaid": true,
         "bookingdates": {"checkin": "{{today}}", "checkout": "{{next_week}}"}
     }
+  },
+  {
+    "summary": "Missing Lastname",
+    "payload": {
+        "firstname": "John",
+        "totalprice": 100,
+        "depositpaid": true,
+        "bookingdates": {"checkin": "{{today}}", "checkout": "{{next_week}}"}
+    }
+  },
+  {
+    "summary": "Missing Totalprice",
+    "payload": {
+        "firstname": "John",
+        "lastname": "Smith",
+        "depositpaid": true,
+        "bookingdates": {"checkin": "{{today}}", "checkout": "{{next_week}}"}
+    }
+  },
+  {
+    "summary": "Missing Depositpaid",
+    "payload": {
+        "firstname": "John",
+        "lastname": "Smith",
+        "totalprice": 100,
+        "bookingdates": {"checkin": "{{today}}", "checkout": "{{next_week}}"}
+    }
+  },
+  {
+    "summary": "Missing Bookingdates",
+    "payload": {
+        "firstname": "John",
+        "lastname": "Smith",
+        "totalprice": 100,
+        "depositpaid": true
+    }
   }
 ]

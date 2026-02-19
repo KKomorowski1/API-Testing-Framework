@@ -9,6 +9,7 @@ from services.booking_service import BookingService
 valid_bookings = DataProcessor.load_and_process_json("booking_valid.json")
 invalid_request_format_bookings = DataProcessor.load_and_process_json("booking_invalid.json")
 bad_request_bookings = DataProcessor.load_and_process_json("booking_bad_request.json")
+update_bookings = DataProcessor.load_and_process_json("booking_update.json")
 
 @pytest.fixture(scope="session")
 def auth_token():
@@ -52,3 +53,28 @@ def test_invalid_request_format_booking(booking_service, booking_data):
 def test_invalid_logic_booking(booking_service, booking_data):
     response = booking_service.create_booking(booking_data)
     assert response.status_code == 400
+
+
+def test_get_all_bookings(booking_service):
+    response = booking_service.get_bookings()
+    assert response.status_code == 200
+    bookings = response.json()
+    assert isinstance(bookings, list)
+    assert len(bookings) > 0
+
+
+@pytest.mark.parametrize("update_data", update_bookings)
+def test_update_booking_success(booking_service, update_data):
+    create_response = booking_service.create_booking(valid_bookings[0])
+    assert create_response.status_code == 200
+    booking_id = BookingResponse(**create_response.json()).bookingid
+
+    update_response = booking_service.update_booking(booking_id, update_data)
+    assert update_response.status_code == 200
+
+    from schemas.booking_schema import BookingDetails
+    validated = BookingDetails(**update_response.json())
+    assert validated.firstname == update_data["firstname"]
+    assert validated.lastname == update_data["lastname"]
+    assert validated.totalprice == update_data["totalprice"]
+    assert validated.depositpaid == update_data["depositpaid"]
